@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Sidebar from "../components/Sidebar";
+import SideBar from "../components/SideBar";
 import NavigationBar from "../components/NavigationBar";
 import ProductCard from "../components/ProductCard";
 import { Users, Globe, Package } from "lucide-react";
@@ -10,7 +10,7 @@ function Dashboard() {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products?limit=25") 
+    fetch("https://fakestoreapi.com/products?limit=25")
       .then((res) => res.json())
       .then((data) => {
         const formattedProducts = data.map((item) => ({
@@ -29,12 +29,11 @@ function Dashboard() {
 
   return (
     <div className="flex bg-gray-50 min-h-screen">
-      <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
+      <SideBar isOpen={isOpen} setIsOpen={setIsOpen} />
 
       <main className="flex-1 flex flex-col p-4 md:p-10 overflow-x-hidden">
         <NavigationBar setIsOpen={setIsOpen} />
 
-     
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 mb-10">
           <StatCard
             title="Total Customers"
@@ -50,7 +49,6 @@ function Dashboard() {
           />
         </div>
 
-       
         <div className="bg-white p-6 md:p-10 rounded-[2rem] shadow-sm border border-gray-100">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10">
             <div className="flex items-center gap-4">
@@ -66,8 +64,6 @@ function Dashboard() {
                 </p>
               </div>
             </div>
-
-            
           </div>
 
           {loading ? (
@@ -78,7 +74,6 @@ function Dashboard() {
               </p>
             </div>
           ) : (
-           
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
@@ -90,7 +85,6 @@ function Dashboard() {
     </div>
   );
 }
-
 
 function StatCard({ title, value, icon, trend }) {
   return (
